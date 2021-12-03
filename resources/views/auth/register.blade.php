@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto my-0 sm:bg-gradient-to-r from-blue-400 to-blue-100 min-w-screen min-h-screen">
+<div class="container mx-auto my-0 min-w-screen min-h-screen">
     <div class="px-0 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8 ">
         <div class="max-w-lg mx-auto">
             <form method="POST" action="{{ route('register') }}"
-                class="bg-white p-8 mt-6 mb-0 rounded-xl sm:shadow-2xl space-y-4">
+                class="bg-white p-8 mt-6 mb-0 rounded-xl sm:shadow-sm sm:border border-gray-200 space-y-4">
                 @csrf
                 <h4 class="text-lg font-bold text-center py-5 sm:text-xl">
                     <span class="text-blue-500"> Registration </span>

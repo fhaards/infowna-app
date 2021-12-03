@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    /*--------------------------------------------------------------------------
+    | User Routes
+    |--------------------------------------------------------------------------*/
+    Route::resource('user', UserController::class);
+    Route::get('user/{id}/edit-photo', [App\Http\Controllers\UserController::class, 'editPhoto'])->name('edit-photo');
+    Route::put('user/{id}/update-photo', [App\Http\Controllers\UserController::class, 'updatePhoto'])->name('update-photo');
+});

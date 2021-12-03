@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto sm:bg-gradient-to-r from-blue-400 to-blue-50 min-h-screen ">
-        <div class="px-0 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
+
+    <div class=" mx-auto h-96">
+        <div class="container px-0 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
             <div class="max-w-lg mx-auto">
-                <form method="POST" action="{{ route('login') }}" class="p-8 mt-6 mb-0 bg-white rounded-xl sm:shadow-2xl space-y-4">
+                <form method="POST" action="{{ route('login') }}"
+                    class="p-8 mt-6 mb-0 bg-white rounded-xl sm:shadow-sm sm:border border-gray-200 space-y-4">
                     @csrf
                     <h4 class="text-lg font-bold text-center py-5 sm:text-xl">
                         <span class="text-blue-500"> Sign in </span>
@@ -37,20 +39,35 @@
 
                     <div>
                         <label for="password" class="text-sm font-medium">Password</label>
-                        <div class="relative mt-1">
+                        <div class="relative mt-1" x-data="{ visible : false , data: '' }">
                             <input type="password" id="password"
-                                class="w-full p-4 pr-12 text-sm border border-gray-200 rounded-lg @error('password') is-invalid @enderror"
-                                name="password" required autocomplete="current-password" placeholder="Enter password" />
+                                class="w-full p-4 pr-12 text-sm border border-gray-200  rounded-lg @error('password') is-invalid @enderror"
+                                name="password" required autocomplete="current-password" placeholder="Enter password"
+                                x-show="visible == false" x-model="data" />
 
-                            <span class="absolute inset-y-0 inline-flex items-center right-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
+                            <input class="w-full p-4 pr-12 text-sm border border-gray-200 rounded-lg"
+                                x-show="visible == true" type="text" placeholder="*********" x-model="data">
+
+                            <div @click.prevent="visible = !visible"
+                                class="absolute inset-y-0 inline-flex items-center right-4 cursor-pointer">
+                                <svg class="w-5 h-5 text-gray-400" x-show="visible == true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+                                    </path>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                    </path>
                                 </svg>
-                            </span>
+
+                                <svg class="w-5 h-5 text-gray-500" x-show="visible == false" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21">
+                                    </path>
+                                </svg>
+                            </div>
                         </div>
 
                         @error('password')
@@ -69,7 +86,7 @@
                     @endif
 
                     <button type="submit"
-                        class="block w-full px-5 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg">
+                        class="block w-full px-5 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-800 rounded-lg">
                         Sign in
                     </button>
 

@@ -10,8 +10,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,12 +20,13 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 
-<body data-theme="light">
-    <div id="app">
+<body>
+    <div id="app" class="@guest sm:bg-gradient-to-r from-gray-200 to-white @else bg-white @endguest">
         @include('layouts/navbar')
         <main class="">
             @yield('content')
         </main>
+        @stack('modals')
     </div>
 
     @include('components/jsinclude')

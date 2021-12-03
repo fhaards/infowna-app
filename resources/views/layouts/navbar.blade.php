@@ -1,12 +1,10 @@
-<header class="shadow-sm fixed sm:relative z-10 w-full">
-    <div class="p-4 mx-auto max-w-screen-xl">
-        <div class="flex items-center justify-between space-x-4 lg:space-x-10">
+<header class="@guest hidden @else shadow-sm bg-white @endguest fixed sm:relative z-10 w-full">
+    <div class="p-4 mx-auto max-w-screen-xl sm:max-w-4xl">
+        <div class="flex items-center justify-between space-x-4">
             <div class="flex lg:w-0 lg:flex-1">
-                <span class="px-10 py-2 bg-gray-200 rounded-lg items-center">
-                    <a class="" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </span>
+                <a class="text-lg text-blue-800 font-bold" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
             </div>
 
             <div x-data="{ mobileMenu: true }">
@@ -23,31 +21,29 @@
                     </button>
                 </div>
                 <nav id="navbar"
-                    class="mobile-menu shadow-lg w-full py-10 fixed left-0 mt-5 pl-5 bg-white text-sm font-medium text-xl flex-col
-                            px-10 sm:px-0 sm:py-0 sm:shadow-none sm:text-sm sm:font-medium sm:mt-0 sm:pl-0 sm:space-x-8 sm:relative 
-                            md:flex flex sm:flex-row "
+                    class="sm:bg-transparent bg-white  mobile-menu shadow-lg w-full py-10 fixed left-0 mt-4 pl-5  text-sm font-medium text-sm flex-col
+                           px-10 sm:px-0 sm:py-0 sm:shadow-none sm:text-sm sm:font-medium sm:mt-0 sm:pl-0 sm:space-x-8 sm:relative 
+                           md:flex flex sm:flex-row "
                     x-show="mobileMenu" x-transition.opacity>
-
-                    <a class="text-gray-500 p-2" href="">About</a>
-                    <a class="text-gray-500 p-2" href="">Blog</a>
-                    <a class="text-gray-500 p-2" href="">Projects</a>
-                    <a class="text-gray-500 p-2" href="">Contact</a>
 
                     @guest
                         @if (Route::has('login'))
-                            <a class="px-5 py-2 font-medium text-gray-500 bg-gray-100 rounded-lg sm:mb-0 mb-3"
+                            <a class="px-5 py-2 font-medium text-blue-800 hover:text-blue-500 mt-5 sm:mt-0 sm:mb-0 mb-3"
                                 href="{{ route('login') }}">
                                 Log in
                             </a>
                         @endif
 
                         @if (Route::has('register'))
-                            <a class="px-5 py-2 font-medium text-white bg-blue-600 rounded-lg"
+                            <a class="px-5 py-2 font-medium text-blue-800 hover:text-blue-500"
                                 href="{{ route('register') }}">
                                 Sign up
                             </a>
                         @endif
                     @else
+                        <a class="text-gray-500 p-2" href="{{ route('user.index')}}">
+                            Profile</a>
+                        <a class="text-gray-500 p-2" href="">Request</a>
                         <div x-data="{ dropdownOpen: false }">
                             <button @click="dropdownOpen = !dropdownOpen"
                                 class="relative font-medium p-2 text-gray-500 z-10 inline-flex gap-5 justify-content-center rounded-md bg-white focus:outline-none">
