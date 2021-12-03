@@ -1,0 +1,32 @@
+NPM
+
+1. npm install
+2. npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 postcss-import
+
+
+/* ----------------------------
+// TAILWINDS
+-----------------------------*/
+
+-------- webpack
+mix.js('resources/js/app.js', 'public/js')
+    .postCss('resources/css/app.css', 'public/css', [
+        require("tailwindcss"),
+        require("autoprefixer")
+    ]);
+    
+-------- resources/css/app.css
+
+/* ./resources/css/app.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----------------------------
+// LARAVEL UI
+-----------------------------*/
+1. composer require laravel/ui
+2. php artisan ui:auth
+
+
+
