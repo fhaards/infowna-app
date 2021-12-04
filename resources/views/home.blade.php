@@ -3,12 +3,13 @@
 @section('content')
     <div class="container mx-auto max-w-4xl">
         <div class="px-4 py-16 mx-auto max-w-screen-xl">
+
             <button
                 class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 type="button" data-modal-toggle="default-modal">
                 Toggle modal
             </button>
-            
+
             <div class="card-header">{{ __('Dashboard') }}</div>
             <div class="card-body">
                 @if (session('status'))
@@ -19,6 +20,7 @@
 
                 {{ __('You are logged in!') }}
             </div>
+
         </div>
     </div>
 @endsection

@@ -1,7 +1,11 @@
+.profile-banner{
+    background: rgb(249,250,251);
+    background: linear-gradient(86deg, rgba(249,250,251,1) 0%, rgba(229,231,235,1) 100%);
+}
 
 @media only screen and (max-width: 640px) {
     /* For tablets: */
-    #navbar{
+    /* #navbar{
         visibility: hidden;
-    }
+    } */
 }

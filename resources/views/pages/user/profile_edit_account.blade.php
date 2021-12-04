@@ -50,17 +50,18 @@
                     <label for="address" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300"> Your
                         Address
                     </label>
-                    <input type="address" id="address" name="address"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        value="{{ $u->address }}" required>
+                    <textarea id="address" name="address"
+                        class="min-h-24 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value="" required>{{ $u->address }} </textarea>
                 </div>
                 <div class="flex sm:flex-row flex-col gap-3">
                     <div class="mb-2 sm:w-1/3">
                         <label for="countries"
                             class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">Country</label>
+                        <input type="hidden" id="user-have-country" value="{{ $u->country }}">
                         <select name="country" id="user-edit-country"
                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="test">test</option>
+
                         </select>
                     </div>
 

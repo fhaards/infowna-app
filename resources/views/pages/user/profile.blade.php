@@ -26,28 +26,34 @@
             @endif
 
             @foreach ($user as $u)
-                <div
-                    class="relative bg-white w-full shadow-sm border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                <div class="profile-banner relative w-full shadow-sm border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex flex-col items-center pb-10">
-                        <div class="absolute -top-10 shadow-lg rounded-full h-24 w-24 mb-3 items-center">
+                        <div class="absolute -top-10  border-4 border-white rounded-full h-24 w-24 mb-3 items-center">
                             @if ($u->photo == null)
-                                <div
-                                    class="flex items-center justify-content-center w-full h-full bg-gray-200 object-cover rounded-full">
+                                <div class="flex items-center justify-content-center w-full h-full bg-white object-cover rounded-full">
                                     <span class="font-bold text-gray-800 text-xs mx-auto"> NO PHOTO </span>
                                 </div>
                             @else
                                 <img class="rounded-full items-center w-full h-full object-cover"
-                                        src="{{ asset("storage/user/avatars/$u->photo") }}" alt="" />
+                                    src="{{ asset("storage/user/avatars/$u->photo") }}" alt="" />
                             @endif
                         </div>
 
                         <div class="mt-24 flex items-center flex-col">
-                            <h3 class="text-xl text-gray-900 font-medium mb-1 dark:text-white"> {{ $u->name }}</h3>
-                            <span class="text-sm text-gray-500 dark:text-gray-400">{{ $u->email }}</span>
+                            <h3 class="text-xl text-gray-800 font-medium mb-1 dark:text-white"> {{ $u->name }}</h3>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">{{ $u->email }}</span>
                         </div>
                         <div class="flex space-x-3 mt-4 lg:mt-6">
                             <a href="{{ route('user.edit', $u->uuid) }}"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                class="inline-flex gap-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path
+                                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                    </path>
+                                </svg>
                                 Profile Settings
                             </a>
                             <a href="{{ route('edit-photo', $u->uuid) }}"
