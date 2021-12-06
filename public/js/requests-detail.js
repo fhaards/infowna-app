@@ -9,12 +9,12 @@ for (let i = 0; i < detailUser.length; i++) {
             function (e) {
                 e.preventDefault();
                 var getReqid = detailUser[i].getAttributeNode("reqid").value;
-                loadDetailUser(getReqid);
+                loadDetailRequests(getReqid);
             },
             false
         );
 
-        async function loadDetailUser(id) {
+        async function loadDetailRequests(id) {
             var tokens = document
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content");
@@ -31,7 +31,6 @@ for (let i = 0; i < detailUser.length; i++) {
             );
 
             var detailResponse = await responses.json();
-            console.log(detailResponse);
 
             requestModalDetail.querySelector(".detail-reqid").innerHTML =
                 detailResponse.req_id;

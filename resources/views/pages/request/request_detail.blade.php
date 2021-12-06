@@ -2,7 +2,7 @@
     class="hidden overflow-x-hidden fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
     <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
         <!-- Modal content -->
-        <div class="bg-white rounded-lg shadow relative dark:bg-gray-700 min-w-3xl">
+        <div class="bg-white rounded-2xl shadow relative dark:bg-gray-700 min-w-3xl">
             <!-- Modal header -->
             <div class="flex items-start justify-between p-8 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
@@ -88,8 +88,7 @@
                 </div>
             </div>
             <!-- Modal footer -->
-            <div
-                class="flex space-x-2 items-center p-6 bg-gray-50 border border-gray-100 rounded-lg px-5 mt-5 rounded-b dark:border-gray-600">
+            <div class="flex space-x-2 items-center p-6 bg-gray-50 border border-gray-100 rounded-b-2xl px-5 mt-5 rounded-b dark:border-gray-600">
                 {{-- <button data-modal-toggle="user-detail-modal" type="button"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-sm rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I
                     accept</button>

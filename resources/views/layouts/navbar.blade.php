@@ -1,9 +1,16 @@
-<nav
-    class="@guest hidden @else shadow-sm bg-white @endguest sm:relative fixed w-full z-40 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
-    <div class="container mx-auto flex flex-wrap items-center justify-between p-4 mx-auto max-w-screen-xl sm:max-w-4xl">
-
-        <a class="text-lg text-blue-800 font-bold" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+<nav  class="@guest hidden @else shadow-sm bg-blue-900 border-t-4 border-yellow-400 @endguest sm:relative fixed w-full z-40 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
+    <div class="container mx-auto flex flex-wrap items-center justify-between px-4 sm:py-2 py-0 mx-auto max-w-screen-xl sm:max-w-4xl">
+        <a class="w-auto bg-none" href="{{ url('/') }}">
+            <div class=" flex flex-row justify-center items-center">
+                <svg version="1.1" id="logo" class="w-24 p-0" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" height="40">
+                    <image href="{{ asset('img/baseapp/logo_djim.svg') }}" height="40" />
+                </svg>
+                <div class="w-2/3 hidden sm:block">
+                    <p class="navbar-title font-medium text-white">DIREKTORAT JENDRAL IMIGRASI </p>
+                    <p class="navbar-title text-white ">KEMENTRIAN HUKUM DAN HAM REPUBLIK INDONESIA</p>
+                </div>
+            </div>
         </a>
 
         <div class="flex items-center md:order-2">
@@ -41,28 +48,28 @@
                 @else
                     <li>
                         <a href="{{ route('home') }}"
-                            class="text-gray-700 font-medium hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                            class="{{$curUrl == 'home' ? 'text-yellow-300' : 'text-gray-50'}} font-medium hover:text-yellow-400 border-t border-yellow-300 md:hover:text-yellow-400 md:border-0 block pl-3 pr-4 py-2 md:hover:text-yellow-400 md:p-2 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:text-yellow-400 dark:border-gray-700"
                             aria-current="page">
                             Home
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('requests.index') }}"
-                            class="text-gray-700 font-medium hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                            class="{{$curUrl == 'requests' ? 'text-yellow-300' : 'text-gray-50'}} font-medium hover:text-yellow-400 border-t border-yellow-300 md:hover:text-yellow-400 md:border-0 block pl-3 pr-4 py-2 md:hover:text-yellow-400 md:p-2 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:text-yellow-400 dark:border-gray-700">
                             Request
                         </a>
                     </li>
                     @if (Auth::user()->user_group == 'admin')
                         <li>
                             <a href="{{ route('user.index') }}"
-                                class="text-gray-700 font-medium hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                                class="{{$curUrl == 'user' ? 'text-yellow-300' : 'text-gray-50'}} text-gray-50 font-medium hover:text-yellow-400 border-t border-yellow-300 md:hover:text-yellow-400 md:border-0 block pl-3 pr-4 py-2 md:hover:text-yellow-400 md:p-2 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:text-yellow-400 dark:border-gray-700">
                                 User List
                             </a>
                         </li>
                     @endif
                     <li>
                         <button id="user-menu-button" aria-expanded="false" type="button" data-dropdown-toggle="dropdown"
-                            class="inline-flex gap-3 items-center justify-between w-full font-medium text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                            class="inline-flex gap-3 items-center justify-between w-full font-medium text-gray-50 hover:text-yellow-400 border-t border-yellow-300 md:hover:text-yellow-400 md:border-0 block pl-3 pr-4 py-2 md:hover:text-yellow-400 md:p-2 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:text-yellow-400 dark:border-gray-700">
                             {{ Auth::user()->name }}
                             <svg class="h-4 w-4 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                 fill="currentColor">

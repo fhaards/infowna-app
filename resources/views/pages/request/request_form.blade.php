@@ -8,11 +8,11 @@
                 <section class="text-center lg:text-left mb-10">
                     <div class="mx-auto max-w-screen-xl lg:items-end lg:justify-between lg:flex">
                         <div class="max-w-xl mx-auto lg:ml-0">
-                            <h1 class="text-sm font-medium tracking-widest text-blue-600 uppercase">
+                            <h1 class="text-sm font-medium tracking-widest text-yellow-300 uppercase">
                                 Application
                             </h1>
                             <h2 class="mt-2 text-3xl font-bold sm:text-4xl">
-                                <span class="text-blue-600">Residence </span> Permit
+                                <span class="text-blue-800">Residence Permit</span> 
                             </h2>
                         </div>
                         <p class="max-w-xs mx-auto mt-4 text-gray-700 lg:mt-0 lg:mr-0">

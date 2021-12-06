@@ -2,22 +2,32 @@
 
 @section('content')
 
-    <div class=" mx-auto h-96">
-        <div class="container px-0 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
+    <div class=" mx-auto h-96 login-bg">
+        <div class="container px-0 sm:py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
             <div class="max-w-lg mx-auto">
                 <form method="POST" action="{{ route('login') }}"
                     class="p-8 mt-6 mb-0 bg-white rounded-xl sm:shadow-sm sm:border border-gray-200 space-y-4">
                     @csrf
+                    <div class="flex flex-row justify-center items-center">
+                        <svg version="1.1" id="logo" class="h-auto w-auto" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" height="100">
+                            <image href="{{ asset('img/baseapp/logo_djim.svg') }}" height="100" />
+                        </svg>
+                        <div>
+                            <p class="text-xs sm:text-sm font-semibold">DIREKTORAT JENDRAL IMIGRASI </p>
+                            <p class="text-xs sm:text-sm">KEMENTRIAN HUKUM DAN HAM REPUBLIK INDONESIA</p>
+                        </div>
+                    </div>
                     <h4 class="text-lg font-bold text-center py-5 sm:text-xl">
-                        <span class="text-blue-500"> Sign in </span>
-                        to your account
+                        <span class="text-blue-800"> Sign in </span>
+                        <span class="text-blue-900"> to your account </span>
                     </h4>
 
                     <div>
                         <label for="email" class="text-sm font-medium">Email</label>
                         <div class="relative mt-1">
                             <input type="email" id="email"
-                                class="w-full p-4 pr-12 text-sm border border-gray-200 rounded-lg @error('email') is-invalid @enderror"
+                                class="w-full p-4 pr-12 text-sm focus:ring-blue-800 border border-gray-200 rounded-lg @error('email') is-invalid @enderror"
                                 name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
                                 placeholder="Enter email" />
 
@@ -41,7 +51,7 @@
                         <label for="password" class="text-sm font-medium">Password</label>
                         <div class="relative mt-1" x-data="{ visible : false , data: '' }">
                             <input type="password" id="password"
-                                class="w-full p-4 pr-12 text-sm border border-gray-200  rounded-lg @error('password') is-invalid @enderror"
+                                class="w-full p-4 pr-12 text-sm focus:ring-blue-800 border border-gray-200  rounded-lg @error('password') is-invalid @enderror"
                                 name="password" required autocomplete="current-password" placeholder="Enter password"
                                 x-show="visible == false" x-model="data" />
 
@@ -86,7 +96,7 @@
                     @endif
 
                     <button type="submit"
-                        class="block w-full px-5 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-800 rounded-lg">
+                        class="block w-full px-5 py-3 text-sm font-medium text-white bg-blue-800 hover:bg-blue-900 rounded-lg">
                         Sign in
                     </button>
 

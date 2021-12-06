@@ -95,7 +95,16 @@ class RequestController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $reqstatus = $request->input('req_status');
+        $requests = REQ::find($id);
+        if ($reqstatus == 'Waiting') {
+            $requests->req_status = 'Approved';
+        } else {
+            $requests->req_status = 'Waiting';
+        }
+        $requests->updated_at = now();
+        $requests->save();
+        return back()->with('success', 'Success! Requests has been updated');
     }
 
     public function destroy($id)

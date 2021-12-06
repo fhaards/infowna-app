@@ -5,6 +5,13 @@ body{
     background: rgb(249,250,251);
     background: linear-gradient(86deg, rgba(249,250,251,1) 0%, rgba(229,231,235,1) 100%);
 }
+.login-bg{
+    background: rgb(30,58,138);
+    background: linear-gradient(86deg, rgba(30,58,138,1) 0%, rgba(30,64,175,1) 50%, rgba(96,165,250,1) 100%);
+}
+.navbar-title{
+    font-size:9px;
+}
 
 @media only screen and (max-width: 640px) {
     /* For tablets: */

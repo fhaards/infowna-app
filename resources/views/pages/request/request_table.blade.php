@@ -2,15 +2,15 @@
 @section('content')
     <div class="container mx-auto max-w-7xl sm:pt-0 pt-24">
         <div class="px-4 py-16 mx-auto sm:max-w-4xl flex flex-col">
-
+            @include('components.alert_success')
             <section class="text-center lg:text-left mb-10">
                 <div class="mx-auto max-w-screen-xl lg:items-end lg:justify-between lg:flex">
                     <div class="max-w-xl mx-auto lg:ml-0">
-                        <h1 class="text-sm font-medium tracking-widest text-blue-600 uppercase">
+                        <h1 class="text-sm font-medium tracking-widest text-yellow-300 uppercase">
                             List of Application
                         </h1>
                         <h2 class="mt-2 text-3xl font-bold sm:text-4xl">
-                            <span class="text-blue-600">Residence </span> Permit
+                            <span class="text-blue-800">Residence Permit</span> 
                         </h2>
                     </div>
                 </div>
@@ -21,31 +21,31 @@
                     <div class="py-2 inline-block min-w-full sm:px-4 lg:px-8">
                         <div class="overflow-hidden sm:rounded-lg">
                             <table class="min-w-full" id="table-request">
-                                <thead class="bg-gray-600 dark:bg-gray-700">
+                                <thead class="bg-blue-900 dark:bg-gray-700">
                                     <tr>
                                         <th scope="col"
-                                            class="text-center border border-gray-700 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
+                                            class="text-center border border-blue-800 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
                                             ID
                                         </th>
                                         <th scope="col"
-                                            class="text-center border border-gray-700 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
+                                            class="text-center border border-blue-800 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
                                             Name
                                         </th>
                                         <th scope="col"
-                                            class="text-center border border-gray-700 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
+                                            class="text-center border border-blue-800 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
                                             Email
                                         </th>
                                         <th scope="col"
-                                            class="text-center border border-gray-700 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
+                                            class="text-center border border-blue-800 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
                                             Date
                                         </th>
                                         <th scope="col"
-                                            class="text-center border border-gray-700 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
+                                            class="text-center border border-blue-800 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
                                             Status
                                         </th>
-                                        <th scope="col" class="text-center border border-gray-700 relative px-4 py-3">
+                                        {{-- <th scope="col" class="text-center border border-blue-800 relative px-4 py-3">
                                             <span class="sr-only">Edit</span>
-                                        </th>
+                                        </th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,7 +55,7 @@
                                         @else
                                             @php $rqs = 'green'; @endphp
                                         @endif
-                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-blue-800">
                                             <td
                                                 class="uppercase font-bold border border-gray-200 text-sm text-gray-600 hover:text-blue-800 px-4 py-2 whitespace-nowrap dark:text-gray-400">
                                                 <a href="javascript:void(0)" reqid="{{ $req->req_id }}"
@@ -75,18 +75,30 @@
                                                 class="border border-gray-200 text-sm text-gray-500 px-4 py-2 whitespace-nowrap dark:text-gray-400">
                                                 {{ date('d/m/Y - H:i', strtotime($req->created_at)) }}
                                             </td>
-                                            <td
-                                                class="text-center border border-gray-200 text-sm text-gray-500 px-4 py-2 whitespace-nowrap dark:text-gray-400">
-                                                <span
-                                                    class="bg-yellow-100 text-{{ $rqs }}-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900">
-                                                    {{ $req->req_status }}
-                                                </span>
+                                            <td class="border border-gray-200 text-sm text-gray-500 px-4 py-2 whitespace-nowrap dark:text-gray-400">
+                                                <div class="inline-flex justify-between gap-1">
+                                                    <span
+                                                        class="bg-{{ $rqs }}-100 text-{{ $rqs }}-800 w-24 text-center text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900">
+                                                        {{ $req->req_status }}
+                                                    </span>
+                                                    <a href="javascript:void(0)" reqid="{{ $req->req_id }}" 
+                                                        data-modal-toggle="request-change-modal"
+                                                        class="change-request bg-blue-800 hover:bg-blue-900 inline-flex items-center justify-center text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                            viewBox="0 0 24 24" fill="none" stroke="#ffffff"
+                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path d="M2.5 2v6h6M21.5 22v-6h-6" />
+                                                            <path
+                                                                d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.2" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
                                             </td>
-                                            <td
+                                            {{-- <td
                                                 class="border border-gray-200 px-4 py-2 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="#"
                                                     class="text-blue-600 hover:text-blue-900 dark:text-blue-500 dark:hover:underline">Edit</a>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -104,8 +116,10 @@
 
 @push('modals')
     @include('pages/request/request_detail')
+    @include('pages/request/request_change_status')
 @endpush
 
 @push('js-stacks')
     <script src="{{ asset('js/requests-detail.js') }}"></script>
+    <script src="{{ asset('js/requests-change.js') }}"></script>
 @endpush

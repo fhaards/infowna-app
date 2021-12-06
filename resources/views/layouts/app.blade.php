@@ -20,6 +20,10 @@
 </head>
 
 <body>
+    @php
+        $curUrl = Request::segment(1);
+    @endphp
+
     <div id="app" class="@guest sm:bg-gradient-to-r from-gray-200 to-white @else bg-white @endguest">
         @include('layouts/navbar')
         <main class="">
