@@ -41,10 +41,6 @@
                                             class="text-center border border-gray-700 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
                                             Email
                                         </th>
-                                        <th scope="col"
-                                            class="text-center border border-gray-700 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
-                                            Status
-                                        </th>
                                         <th scope="col" class="text-center border border-gray-700 relative px-4 py-3">
                                             <span class="sr-only">Edit</span>
                                         </th>
@@ -67,10 +63,6 @@
                                             <td
                                                 class="border border-gray-200 text-sm text-gray-500 px-4 py-2 whitespace-nowrap dark:text-gray-400">
                                                 {{ $us->email }}
-                                            </td>
-                                            <td
-                                                class="border border-gray-200 text-sm text-gray-500 px-4 py-2 whitespace-nowrap dark:text-gray-400">
-                                                $2999
                                             </td>
                                             <td
                                                 class="border border-gray-200 px-4 py-2 whitespace-nowrap text-right text-sm font-medium">

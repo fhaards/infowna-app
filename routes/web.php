@@ -36,4 +36,5 @@ Route::group(['middleware' => 'auth'], function () {
     | Request Routes
     |--------------------------------------------------------------------------*/
     Route::resource('requests', RequestController::class);
+    Route::get('requests/{id}/json-detail-requests', [App\Http\Controllers\RequestController::class, 'apiDetailRequests']);
 });

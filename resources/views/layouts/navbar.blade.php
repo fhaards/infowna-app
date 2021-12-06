@@ -1,5 +1,5 @@
 <nav
-    class="@guest hidden @else shadow-sm bg-white @endguest sm:relative fixed w-full z-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
+    class="@guest hidden @else shadow-sm bg-white @endguest sm:relative fixed w-full z-40 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
     <div class="container mx-auto flex flex-wrap items-center justify-between p-4 mx-auto max-w-screen-xl sm:max-w-4xl">
 
         <a class="text-lg text-blue-800 font-bold" href="{{ url('/') }}">
@@ -71,7 +71,7 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </button>
-                        <div class="hidden  z-50 sm:max-w-48 sm:w-auto w-full bg-white text-base z-9 list-none divide-y divide-gray-100 rounded shadow my-4 dark:bg-gray-700 dark:divide-gray-600"
+                        <div class="hidden  z-40 sm:max-w-48 sm:w-auto w-full bg-white text-base list-none divide-y divide-gray-100 rounded shadow my-4 dark:bg-gray-700 dark:divide-gray-600"
                             id="dropdown">
                             <div class="sm:px-4 px-8 py-3">
                                 <span class="text-gray-900 block text-sm dark:text-white">

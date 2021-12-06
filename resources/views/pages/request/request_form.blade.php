@@ -20,20 +20,9 @@
                         </p>
                     </div>
                 </section>
-                <form class="w-full flex sm:flex-row flex-col gap-10" method="post" action="{{ route('requests.store') }}">
-                    <div class="w-full space-y-6 bg-white shadow-sm border border-gray-200 rounded-lg p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
-                        <div class="mb-2">
-                            Permission Form
-                        </div>
-                        <div class="mb-2">
-                            <label for="address" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">
-                                Address In Indonesia
-                            </label>
-                            <textarea class="min-h-24 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                            id="address" name="address"></textarea>
-                        </div>
-                    </div>
-                </form>
+
+                @include('components.alert_success')
+                @yield('request-form')
             @endif
         </div>
     </div>
