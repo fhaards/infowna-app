@@ -6,7 +6,7 @@ let loadingOptions = "<option> Loading ... </option>";
 countriesList.innerHTML = loadingOptions;
 
 fetch("https://restcountries.com/v3.1/all")
-    .then((res) => res.json())
+    .then((res)  => res.json())
     .then((data) => initialize(data))
     .catch((err) => console.log("Error:", err));
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,12 @@ Route::group(['middleware' => 'auth'], function () {
     | User Routes
     |--------------------------------------------------------------------------*/
     Route::resource('user', UserController::class);
+    Route::get('user/{id}/json-detail-user', [App\Http\Controllers\UserController::class, 'apiDetailUser']);
     Route::get('user/{id}/edit-photo', [App\Http\Controllers\UserController::class, 'editPhoto'])->name('edit-photo');
     Route::put('user/{id}/update-photo', [App\Http\Controllers\UserController::class, 'updatePhoto'])->name('update-photo');
+    
+    /*--------------------------------------------------------------------------
+    | Request Routes
+    |--------------------------------------------------------------------------*/
+    Route::resource('requests', RequestController::class);
 });

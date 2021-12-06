@@ -1,3 +1,6 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
 .profile-banner{
     background: rgb(249,250,251);
     background: linear-gradient(86deg, rgba(249,250,251,1) 0%, rgba(229,231,235,1) 100%);

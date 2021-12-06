@@ -20,10 +20,22 @@ class UserController extends Controller
 
     public function index()
     {
-        $id = Auth::user()->uuid;
-        $user = $this->detailQueries($id);
-        $data['user'] = $user->get();
-        return view('pages/user/profile_dashboard', $data);
+        $getGroup = Auth::user()->user_group;
+        $getUuid  = Auth::user()->uuid;
+        if ($getGroup == 'user') :
+            $user = $this->detailQueries($getUuid);
+            $data['user'] = $user->get();
+            return view('pages/user/profile_dashboard', $data);
+        elseif ($getGroup == 'admin') :
+            $user = User::where('user_group', '!=', 'admin')->latest()->paginate(5);
+            return view('pages/user/user_table', compact('user'))
+                ->with('i', (request()->input('page', 1) - 1) * 5);
+        else :
+            return redirect(404);
+        endif;
+
+        // $data['user'] = User::where('user_group', '!=' , 'admin')->get();
+        // return view('pages/user/user_table', $data);
     }
 
     public function create()
@@ -43,6 +55,7 @@ class UserController extends Controller
         return view('pages/user/profile_dashboard', $data);
     }
 
+
     public function edit($id)
     {
         $user = $this->detailQueries($id);
@@ -50,33 +63,79 @@ class UserController extends Controller
         return view('pages/user/profile_edit_account', $data);
     }
 
+
     public function update(Request $request, $id)
     {
         $data = [];
         // $birthDate = date('Y-m-d', );
-        $user = $request->user()->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-        ]);
-        if ($user) {
-            $data = array(
-                'phone' => $request->input('phone'),
-                'birth_date' => $request->input('birth_date'),
-                'birth_place' => $request->input('birth_place'),
-                'address' => $request->input('address'),
-                'country' => $request->input('country'),
-                'districts' => $request->input('districts'),
-                'postcode' => $request->input('postcode')
-            );
-            $key = array('uuid' => $id);
-            $useraccount = OPS::updateDB('users_account', $data, $key);
-            if ($useraccount) {
-                return redirect()->route('user.index');
+        $inName      = $request->input('name');
+        $inEmail     = $request->input('email');
+        $inGender    = $request->input('gender');
+        $inPhone     = $request->input('phone');
+        $inBirthD    = $request->input('birth_date');
+        $inBirthP    = $request->input('birth_place');
+        $inAddress   = $request->input('address');
+        $inCountry   = $request->input('country');
+        $inDistricts = $request->input('districts');
+        $inPostcode  = $request->input('postcode');
+
+        $input = [
+            'name'  => $inName,
+            'email' => $inEmail,
+            'gender' => $inGender,
+            'phone' => $inPhone,
+            'birth_date' => $inBirthD,
+            'birth_place' => $inBirthP,
+            'address' => $inAddress,
+            'country' => $inCountry,
+            'districts' => $inDistricts,
+            'postcode' => $inPostcode,
+        ];
+
+        $rules = [
+            'name'   => 'required', 'email' => 'required', 'gender' => 'required',
+            'phone' => 'required','birth_date'  => 'required', 'birth_place' => 'required',
+            'address' => 'required', 'country' => 'required', 'districts' => 'required',
+            'postcode' => 'required',
+        ];
+
+        $messages = [
+            'name.required' => 'Required Name', 'email.required' => 'Required Email',  'gender.required' => 'Required Gender',
+            'phone.required' => 'Required Phone', 'birth_date.required' => 'Required Birth Date',  'birth_place.required' => 'Required Birth Place',
+            'address.required' => 'Required Address', 'country.required' => 'Required Country',  'districts.required' => 'Required Districts',
+            'postcode.required' => 'Required Postcode'
+        ];
+
+        $validator = Validator::make($input, $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->route('user.edit',$id)->withErrors($messages);
+        } else {
+            $user = $request->user()->update([
+                'name' => $inName,
+                'email' => $inEmail,
+                'user_status' => 1
+            ]);
+            if ($user) {
+                $data = array(
+                    'gender'      => $inGender,
+                    'phone'       => $inPhone,
+                    'birth_date'  => $inBirthD,
+                    'birth_place' => $inBirthP,
+                    'address'     => $inAddress,
+                    'country'     => $inCountry,
+                    'districts'   => $inDistricts,
+                    'postcode'    => $inPostcode
+                );
+                $key = array('uuid' => $id);
+                $useraccount = OPS::updateDB('users_account', $data, $key);
+                if ($useraccount) {
+                    return redirect()->route('user.index');
+                } else {
+                    return redirect()->route('user.index');
+                }
             } else {
                 return redirect()->route('user.index');
             }
-        } else {
-            return redirect()->route('user.index');
         }
     }
 
@@ -127,6 +186,19 @@ class UserController extends Controller
             }
         }
     }
+
+    //API
+    public function apiDetailUser($id)
+    {
+        if (Auth::user()->user_group == "admin") :
+            $user = $this->detailQueries($id);
+            $data = $user->get();
+            return response()->json($data, 200);
+        else :
+            return redirect(404);
+        endif;
+    }
+
 
     public function detailQueries($id)
     {

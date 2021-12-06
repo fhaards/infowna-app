@@ -15,6 +15,7 @@ class UserAccount extends Migration
     {
         Schema::create('users_account', function (Blueprint $table) {
             $table->char('uuid', 36);
+            $table->string('gender',7)->nullable();
             $table->string('phone')->nullable();
             $table->date('birth_date')->nullable();
             $table->text('birth_place')->nullable();
@@ -23,7 +24,6 @@ class UserAccount extends Migration
             $table->text('districts')->nullable();
             $table->text('postcode')->nullable();
             $table->text('photo')->nullable();
-            $table->string('status', 20)->nullable();
         });
     }
 

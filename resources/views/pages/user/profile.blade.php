@@ -2,35 +2,15 @@
 @section('content')
     <div class="container mx-auto max-w-7xl sm:pt-0 pt-24">
         <div class="px-4 py-16 mx-auto sm:max-w-4xl flex flex-col">
-            @if (count($errors) > 0)
-                @foreach ($errors->all() as $message)
-                    <div id="alert-2" class="flex gap-3 bg-red-100 rounded-lg p-4 mb-4 items-center text-red-700"
-                        role="alert">
-                        <i class="font-medium fe fe-alert-circle fe-12"></i>
-                        <div class="ml-3 text-sm font-medium text-red-700">
-                            {{ $message }}
-                        </div>
-                        <button type="button"
-                            class="ml-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8"
-                            data-collapse-toggle="alert-2" aria-label="Close">
-                            <span class="sr-only">Dismiss</span>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    </div>
-                @endforeach
-            @endif
-
+            @include('components.notif_error')
             @foreach ($user as $u)
-                <div class="profile-banner relative w-full shadow-sm border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                <div
+                    class="profile-banner relative w-full shadow-sm border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex flex-col items-center pb-10">
                         <div class="absolute -top-10  border-4 border-white rounded-full h-24 w-24 mb-3 items-center">
                             @if ($u->photo == null)
-                                <div class="flex items-center justify-content-center w-full h-full bg-white object-cover rounded-full">
+                                <div
+                                    class="flex items-center justify-content-center w-full h-full bg-white object-cover rounded-full">
                                     <span class="font-bold text-gray-800 text-xs mx-auto"> NO PHOTO </span>
                                 </div>
                             @else
@@ -40,8 +20,23 @@
                         </div>
 
                         <div class="mt-24 flex items-center flex-col">
-                            <h3 class="text-xl text-gray-800 font-medium mb-1 dark:text-white"> {{ $u->name }}</h3>
-                            <span class="text-sm text-gray-600 dark:text-gray-400">{{ $u->email }}</span>
+                            <h3 class="text-xl text-gray-800 font-medium mb-1 dark:text-white">
+                                {{ $u->name }}
+                            </h3>
+                            <span class="flex inline-flex gap-3 items-center text-sm text-gray-600 dark:text-gray-400">
+                                {{ $u->email }}
+                                @if (Auth::user()->user_status == 0)
+                                    <span
+                                        class="bg-red-100 border border-red-500 text-red-600 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">
+                                        Invalid
+                                    </span>
+                                @else
+                                    <span
+                                        class="bg-green-100 border border-green-500 text-green-600 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">
+                                        Validated
+                                    </span>
+                                @endif
+                            </span>
                         </div>
                         <div class="flex space-x-3 mt-4 lg:mt-6">
                             <a href="{{ route('user.edit', $u->uuid) }}"

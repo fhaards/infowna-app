@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\Auth\Authenticatable;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -49,13 +50,21 @@ class RegisterController extends Controller
             'uuid' => $getId,
             'name' => $data['name'],
             'email' => $data['email'],
-            'user_group' => 'user',
             'password' => Hash::make($data['password']),
+            'user_group' => 'user',
+            'user_status' => false,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
-        if ($insert == true) {
-            return DB::table('users_account')->insert([
+        if ($insert) {
+            $insertAccount =  DB::table('users_account')->insert([
                 'uuid' => $getId
             ]);
+            if ($insertAccount) {
+                return redirect()->route('login');
+            } else {
+                return redirect()->route('login');
+            }
         }
     }
 }

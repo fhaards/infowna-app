@@ -24,18 +24,21 @@ class UserSeeder extends Seeder
             'email' => 'admin@mail.com',
             'user_group' => 'admin',
             'password' => Hash::make('12345678'),
+            'user_status' => true,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('users_account')->insert([
             'uuid' => $getId,
-            'phone' => null,
-            'address' => null,
+            'gender' => 'Male',
+            'phone' => '+6281122334455',
+            'address' => 'Jakart',
             'birth_date' => now(),
             'birth_place' => 'Jakarta',
-            'country' => null,
-            'districts' => null,
-            'postcode' => null,
-            'status' => null,
+            'country' => 'Indonesia',
+            'districts' => 'Jakarta',
+            'postcode' => '-',
             'photo' => null
         ]);
     }
