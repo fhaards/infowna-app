@@ -28,7 +28,7 @@
 
     <div id="app" class="relative @guest sm:bg-gradient-to-r from-gray-200 to-white @else bg-white @endguest">
         @include('layouts/navbar')
-        <main class=" @guest  @else pt-16 pb-32 @endguest">
+        <main class=" @guest  @else pt-16 pb-24 @endguest">
             @yield('content')
         </main>
         @include('layouts/footer')

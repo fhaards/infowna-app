@@ -1,10 +1,11 @@
 @extends('pages.request.request_form')
 @section('request-form')
-    <form class="w-full flex flex-col gap-10" method="post" action="{{ route('requests.store') }}">
+    <form class="w-full flex flex-col gap-10" method="post" action="{{ route('requests.store') }}" enctype="multipart/form-data">
         @csrf
         @foreach ($user as $u)
             <input type="hidden" name="uuid" value="{{ $u->uuid }}">
-            <div class="w-full space-y-6 bg-white shadow-sm border border-gray-200 rounded-lg p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div
+                class="w-full space-y-6 bg-white shadow-sm border border-gray-200 rounded-lg p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div class="mb-2 p-3 text-center text-gray-600 font-bold text-lg border-b border-gray-600">
                     Permit Form
                 </div>
@@ -46,25 +47,50 @@
                             Phone Number
                         </label>
                         <input type="text"
-                            class="bg-gray-50 border border-gray-300  sm:text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
+                            class="@error('phone') is-invalid border-red-500 @enderror bg-gray-50 border border-gray-300  sm:text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
                             id="phone" name="phone" value="{{ $u->phone }}">
+
+                        @error('phone')
+                            <div class="alert alert-danger text-red-500 text-xs py-2">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-2 sm:w-2/3">
                         <label for="passport" class="text-sm font-medium text-blue-800 block mb-2 dark:text-gray-300">
                             Passport ID
                         </label>
                         <input type="text"
-                            class="min-h-24 bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
-                            id="address" name="passport_id" placeholder="Input your Passport ID or Number">
+                            class="@error('passport_id') is-invalid border-red-500 @enderror min-h-24 bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
+                            id="passport_id" name="passport_id" placeholder="Input your Passport ID or Number">
+                        @error('passport_id')
+                            <div class="alert alert-danger text-red-500 text-xs py-2">{{ $message }}</div>
+                        @enderror
                     </div>
+                </div>
+                <div class="mb-2">
+                    <label class="text-sm font-medium text-blue-800 block mb-2 dark:text-gray-300" for="passport-img">
+                        Passport Image
+                    </label>
+                    <input
+                        class="block w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-transparent text-sm rounded-lg
+                        @error('file') is-invalid border-red-500 @enderror"
+                        aria-describedby="file" id="file" name="file" type="file">
+                    <div class="mt-1 text-sm text-gray-500" id="file">
+                        Scan Passport
+                    </div>
+                    @error('file')
+                        <div class="alert alert-danger text-red-500 text-xs py-2">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-2">
                     <label for="address" class="text-sm font-medium text-blue-800 block mb-2 dark:text-gray-300">
                         Address In Indonesia
                     </label>
                     <textarea
-                        class="min-h-24 bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
+                        class="@error('address') is-invalid @enderror min-h-24 bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
                         id="address" name="address"></textarea>
+                    @error('address')
+                        <div class="alert alert-danger text-red-500 text-xs py-2">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="flex items-start justify-end mb-2">
                     <button type="submit"

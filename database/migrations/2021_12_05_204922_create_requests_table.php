@@ -22,8 +22,8 @@ class CreateRequestsTable extends Migration
             $table->string('gender',7);
             $table->string('phone',25);
             $table->string('nationality');
-            $table->string('relation')->nullable();
             $table->text('address_indonesia');
+            $table->text('passport_img')->nullable();
             $table->string('req_status',25);
             $table->timestamps();
         });

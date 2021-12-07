@@ -57,23 +57,37 @@ class RequestController extends Controller
         $address     = $request->input('address');
         $reqId       = date('dmyhis') . strtoupper(substr($uuid, 0, 8));
         $status      = 'Waiting';
+        $file        = $request->file('file');
 
-        REQ::create([
-            'req_id' => $reqId,
-            'uuid' => $uuid,
-            'name' => $name,
-            'email' => $email,
-            'gender' => $gender,
-            'phone' => $phone,
-            'nationality' => $nationality,
-            'passport_id' => $passport_id,
-            'address_indonesia' => $address,
-            'req_status' => $status,
-            'created_at' => $getDate,
-            'updated_at' => $getDate
+        $validated = $request->validate([
+            'phone' => 'required',
+            'passport_id' => 'required',
+            'address' => 'required',
+            'file' => 'required|mimes:jpeg,jpg,png'
         ]);
 
-        return back()->with('success', 'Success! Your form has been submitted, wait for approved by administrator');
+        if ($validated) {
+            $getNameFile = $uuid . '-passport.' . $file->getClientOriginalExtension();
+            $request->file('file')->storeAs('public/requests/passport', $getNameFile);
+            REQ::create([
+                'req_id' => $reqId,
+                'uuid' => $uuid,
+                'name' => $name,
+                'email' => $email,
+                'gender' => $gender,
+                'phone' => $phone,
+                'nationality' => $nationality,
+                'passport_id' => $passport_id,
+                'address_indonesia' => $address,
+                'req_status' => $status,
+                'passport_img' => $getNameFile,
+                'created_at' => $getDate,
+                'updated_at' => $getDate
+            ]);
+            return redirect()->route('requests.index')->with('success', 'Success! Your form has been submitted, wait for approved by administrator');
+        } else {
+            return back()->with('error', 'Ops! Something Wrong');
+        }
     }
 
     public function show($id)

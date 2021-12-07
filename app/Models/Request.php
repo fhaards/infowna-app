@@ -24,7 +24,7 @@ class Request extends Model
         'gender',
         'phone',
         'nationality',
-        'relation',
+        'passport_img',
         'req_status',
         'address_indonesia',
     ];

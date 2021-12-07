@@ -79,37 +79,20 @@ class UserController extends Controller
         $inDistricts = $request->input('districts');
         $inPostcode  = $request->input('postcode');
 
-        $input = [
-            'name'  => $inName,
-            'email' => $inEmail,
-            'gender' => $inGender,
-            'phone' => $inPhone,
-            'birth_date' => $inBirthD,
-            'birth_place' => $inBirthP,
-            'address' => $inAddress,
-            'country' => $inCountry,
-            'districts' => $inDistricts,
-            'postcode' => $inPostcode,
-        ];
+        $validated = $request->validate([
+            'name'          => 'required',
+            'email'         => 'required',
+            'gender'        => 'required',
+            'phone'         => 'required',
+            'birth_date'    => 'required',
+            'birth_place'   => 'required',
+            'address'       => 'required',
+            'country'       => 'required',
+            'districts'     => 'required',
+            'postcode'      => 'required'
+        ]);
 
-        $rules = [
-            'name'   => 'required', 'email' => 'required', 'gender' => 'required',
-            'phone' => 'required','birth_date'  => 'required', 'birth_place' => 'required',
-            'address' => 'required', 'country' => 'required', 'districts' => 'required',
-            'postcode' => 'required',
-        ];
-
-        $messages = [
-            'name.required' => 'Required Name', 'email.required' => 'Required Email',  'gender.required' => 'Required Gender',
-            'phone.required' => 'Required Phone', 'birth_date.required' => 'Required Birth Date',  'birth_place.required' => 'Required Birth Place',
-            'address.required' => 'Required Address', 'country.required' => 'Required Country',  'districts.required' => 'Required Districts',
-            'postcode.required' => 'Required Postcode'
-        ];
-
-        $validator = Validator::make($input, $rules, $messages);
-        if ($validator->fails()) {
-            return redirect()->route('user.edit',$id)->withErrors($messages);
-        } else {
+        if ($validated) {
             $user = $request->user()->update([
                 'name' => $inName,
                 'email' => $inEmail,
@@ -129,13 +112,15 @@ class UserController extends Controller
                 $key = array('uuid' => $id);
                 $useraccount = OPS::updateDB('users_account', $data, $key);
                 if ($useraccount) {
-                    return redirect()->route('user.index');
+                    return redirect()->route('user.index')->with('success', 'Success! Update');
                 } else {
                     return redirect()->route('user.index');
                 }
             } else {
                 return redirect()->route('user.index');
             }
+        } else {
+            return back()->with('error', 'Ops! Something Wrong');
         }
     }
 

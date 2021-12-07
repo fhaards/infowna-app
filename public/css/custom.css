@@ -1,21 +1,52 @@
-body{
+body {
     font-family: 'Roboto', sans-serif;
 }
-.inner-content{
+
+.inner-content {
     height: 1000px;
     overflow-y: auto;
 }
 
-.profile-banner{
-    background: rgb(249,250,251);
-    background: linear-gradient(86deg, rgba(249,250,251,1) 0%, rgba(229,231,235,1) 100%);
+.profile-banner {
+    background: rgb(249, 250, 251);
+    background: linear-gradient(86deg, rgba(249, 250, 251, 1) 0%, rgba(229, 231, 235, 1) 100%);
 }
-.login-bg{
-    background: rgb(30,58,138);
-    background: linear-gradient(86deg, rgba(30,58,138,1) 0%, rgba(30,64,175,1) 50%, rgba(96,165,250,1) 100%);
+
+.login-bg {
+    background: rgb(30, 58, 138);
+    background: linear-gradient(86deg, rgba(30, 58, 138, 1) 0%, rgba(30, 64, 175, 1) 50%, rgba(96, 165, 250, 1) 100%);
 }
-.navbar-title{
-    font-size:9px;
+
+.navbar-title {
+    font-size: 9px;
+}
+
+
+/* SPINNER */
+.loader {
+    border-top-color: #3498db;
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media only screen and (max-width: 640px) {

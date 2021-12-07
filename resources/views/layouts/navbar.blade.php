@@ -1,15 +1,11 @@
 <nav  class="@guest hidden @else shadow-lg sm:shadow-lg md:shadow-sm bg-white border-t-2 border-yellow-300 @endguest sm:relative fixed w-full z-40 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
     <div class="container mx-auto flex flex-wrap items-center justify-between px-4 sm:py-2 py-0 mx-auto max-w-screen-xl sm:max-w-4xl">
-        <a class="w-auto bg-none" href="{{ url('/') }}">
-            <div class=" flex flex-row justify-center items-center">
-                <svg version="1.1" id="logo" class="h-12 w-16 p-0" xmlns="http://www.w3.org/2000/svg"
+        <a class=" bg-none" href="{{ url('/') }}">
+            <div class="flex flex-row justify-center items-center">
+                <svg version="1.1" id="logo" class="h-10 w-32" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" height="100%">
-                    <image href="{{ asset('img/baseapp/logo_djim.svg') }}" height="100%" />
+                    <image href="{{ asset('img/baseapp/logo-sws-b.svg') }}" height="100%" />
                 </svg>
-                <div class="w-2/3 hidden sm:block">
-                    <p class="navbar-title font-bold text-blue-800">DIREKTORAT JENDRAL IMIGRASI </p>
-                    <p class="navbar-title text-blue-900 ">KEMENTRIAN HUKUM DAN HAM REPUBLIK INDONESIA</p>
-                </div>
             </div>
         </a>
 

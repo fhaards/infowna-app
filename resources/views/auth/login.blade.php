@@ -8,17 +8,13 @@
                 <form method="POST" action="{{ route('login') }}"
                     class="p-8 mt-6 mb-0 bg-white rounded-xl sm:shadow-sm sm:border border-gray-200 space-y-4">
                     @csrf
-                    <div class="flex flex-row justify-center items-center">
-                        <svg version="1.1" id="logo" class="h-auto w-auto" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" height="100">
-                            <image href="{{ asset('img/baseapp/logo_djim.svg') }}" height="100" />
+                    <div class="flex flex-row justify-center items-center p-0">
+                        <svg version="1.1" id="logo" class="w-48 h-32" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" width="100%">
+                            <image href="{{ asset('img/baseapp/logo-sws-b.svg') }}" width="100%" />
                         </svg>
-                        <div>
-                            <p class="text-xs sm:text-sm font-semibold">DIREKTORAT JENDRAL IMIGRASI </p>
-                            <p class="text-xs sm:text-sm">KEMENTRIAN HUKUM DAN HAM REPUBLIK INDONESIA</p>
-                        </div>
                     </div>
-                    <h4 class="text-lg font-bold text-center py-5 sm:text-xl">
+                    <h4 class="text-lg font-bold text-center  sm:text-xl">
                         <span class="text-blue-800"> Sign in </span>
                         <span class="text-blue-900"> to your account </span>
                     </h4>

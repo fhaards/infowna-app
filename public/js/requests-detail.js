@@ -32,6 +32,7 @@ for (let i = 0; i < detailUser.length; i++) {
 
             var detailResponse = await responses.json();
 
+            console.log(detailResponse);
             requestModalDetail.querySelector(".detail-reqid").innerHTML =
                 detailResponse.req_id;
 
@@ -55,6 +56,15 @@ for (let i = 0; i < detailUser.length; i++) {
 
             requestModalDetail.querySelector(".detail-address").innerHTML =
                 detailResponse.address_indonesia;
+
+            requestModalDetail
+                .querySelector(".detail-passport-img")
+                .setAttribute(
+                    "src",
+                    APP_URL +
+                        "/storage/requests/passport/" +
+                        detailResponse.passport_img
+                );
 
             var getStatus = detailResponse.req_status;
             var statCol = "";

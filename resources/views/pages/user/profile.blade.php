@@ -2,7 +2,6 @@
 @section('content')
     <div class="container mx-auto max-w-7xl sm:pt-0 pt-8">
         <div class="px-4 pb-24  mx-auto sm:max-w-4xl flex flex-col">
-            @include('components.notif_error')
             @foreach ($user as $u)
                 <div
                     class="profile-banner relative w-full shadow-sm border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
@@ -60,6 +59,7 @@
                 </div>
 
                 <div class="mt-5">
+                    @include('components.flash_messages')
                     @yield('profile-content')
                 </div>
             @endforeach

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FooController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +23,9 @@ Route::get('/', function () {
     } else {
         return view('auth/login');
     }
-    
 });
+
+// Route::get('/foo/getname', [App\Http\Controllers\FooController::class, 'index'])->name('foo');
 
 Auth::routes();
 
