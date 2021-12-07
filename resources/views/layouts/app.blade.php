@@ -12,7 +12,9 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> --}}
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -24,11 +26,12 @@
         $curUrl = Request::segment(1);
     @endphp
 
-    <div id="app" class="@guest sm:bg-gradient-to-r from-gray-200 to-white @else bg-white @endguest">
+    <div id="app" class="relative @guest sm:bg-gradient-to-r from-gray-200 to-white @else bg-white @endguest">
         @include('layouts/navbar')
-        <main class="">
+        <main class=" @guest  @else pt-16 pb-32 @endguest">
             @yield('content')
         </main>
+        @include('layouts/footer')
         @stack('modals')
     </div>
 

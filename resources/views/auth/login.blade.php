@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class=" mx-auto h-96 login-bg">
+    <div class=" mx-auto">
         <div class="container px-0 sm:py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
             <div class="max-w-lg mx-auto">
                 <form method="POST" action="{{ route('login') }}"

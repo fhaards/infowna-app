@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Request as REQ;
 
 class HomeController extends Controller
 {
@@ -26,10 +28,18 @@ class HomeController extends Controller
     {
         $ustatus = Auth::user()->user_status;
         $uuid    = Auth::user()->uuid;
-        if($ustatus == 0) {
-            return redirect()->route('user.edit',$uuid);
+        $usgroup = Auth::user()->user_group;
+        if ($ustatus == 0) {
+            return redirect()->route('user.edit', $uuid);
         } else {
-            return view('home');
+            if ($usgroup == 'admin') {
+                $data['countUser']  = User::where('user_group', '!=', 'admin')->get()->count();
+                $data['countReqW']  = REQ::all()->count();
+                $data['countReqA']  = REQ::where('req_status', 'Approved')->get()->count();
+                return view('home', $data);
+            } else {
+                return view('home');
+            }
         }
     }
 }

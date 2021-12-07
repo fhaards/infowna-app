@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container mx-auto max-w-7xl sm:pt-0 pt-24">
-        <div class="px-4 py-16 mx-auto sm:max-w-4xl flex flex-col">
+    <div class="container mx-auto max-w-7xl sm:pt-0 pt-8">
+        <div class="px-4 pb-24 mx-auto sm:max-w-4xl flex flex-col">
 
             <section class="text-center lg:text-left mb-10">
                 <div class="mx-auto max-w-screen-xl lg:items-end lg:justify-between lg:flex">

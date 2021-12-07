@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container h-96 mx-auto my-0  login-bg">
-    <div class="px-0 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8 ">
+<div class=" mx-auto">
+    <div class="container px-0 sm:py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
         <div class="max-w-lg mx-auto">
             <form method="POST" action="{{ route('register') }}"
                 class="bg-white p-8 mt-6 mb-0 rounded-xl sm:shadow-sm sm:border border-gray-200 space-y-4">

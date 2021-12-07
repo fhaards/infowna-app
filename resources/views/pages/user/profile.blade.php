@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container mx-auto max-w-7xl sm:pt-0 pt-24">
-        <div class="px-4 py-24 mx-auto sm:max-w-4xl flex flex-col">
+    <div class="container mx-auto max-w-7xl sm:pt-0 pt-8">
+        <div class="px-4 pb-24  mx-auto sm:max-w-4xl flex flex-col">
             @include('components.notif_error')
             @foreach ($user as $u)
                 <div
