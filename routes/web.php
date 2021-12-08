@@ -44,4 +44,5 @@ Route::group(['middleware' => 'auth'], function () {
     |--------------------------------------------------------------------------*/
     Route::resource('requests', RequestController::class);
     Route::get('requests/{id}/json-detail-requests', [App\Http\Controllers\RequestController::class, 'apiDetailRequests']);
+    Route::get('requests/{requests}/print-requests', [App\Http\Controllers\RequestController::class, 'printRequests'])->name('print-requests');
 });

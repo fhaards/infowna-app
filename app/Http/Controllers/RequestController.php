@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class RequestController extends Controller
 {
@@ -124,6 +125,14 @@ class RequestController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function printRequests(Request $request, $id){
+        // $detail = $this->detailQueries($id);
+        $data['data'] = REQ::find($id);
+        $pdf = PDF::loadview('pages/request/request_print', $data);
+        return $pdf->stream('Print-' . $id . '.pdf');
+        
     }
 
     public function apiDetailRequests($id)
