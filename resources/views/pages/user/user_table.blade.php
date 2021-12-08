@@ -10,7 +10,7 @@
                             USER TABLE
                         </h1>
                         <h2 class="mt-2 text-3xl font-bold sm:text-4xl">
-                            <span class="text-blue-800">List of User Table</span> 
+                            <span class="text-blue-800">List of User Table</span>
                         </h2>
                     </div>
 
@@ -46,12 +46,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($user as $us)
+                                    @forelse ($user as $us)
                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-blue-800">
                                             <td
                                                 class="uppercase font-bold border border-gray-200 text-sm text-gray-600 hover:text-blue-800 px-4 py-2 whitespace-nowrap dark:text-gray-400">
                                                 <a href="javascript:void(0)" uuid="{{ $us->uuid }}"
-                                                   class="detail-user" data-modal-toggle="user-detail-modal">
+                                                    class="detail-user" data-modal-toggle="user-detail-modal">
                                                     {{ $us->uuid }}
                                                 </a>
                                             </td>
@@ -69,10 +69,17 @@
                                                     class="text-blue-600 hover:text-blue-900 dark:text-blue-500 dark:hover:underline">Edit</a>
                                             </td> --}}
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr colspan="3">
+                                            <td>
+                                                <p class="bg-danger text-white p-1">No User</p>
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                             <div class="my-2 py-5">
+                                {{-- {{ $users->appends(Input::get('req_status'))->links() }} --}}
                                 {!! $user->links() !!}
                             </div>
                         </div>

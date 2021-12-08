@@ -20,15 +20,13 @@ class RegisterController extends Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
+    | validation and creation. By    default this controller uses a trait to
+    | provide  this  functionality  without   requiring any additional code.
     |
     */
 
     use RegistersUsers;
-
     protected $redirectTo = RouteServiceProvider::HOME;
-
     public function __construct()
     {
         $this->middleware('guest');
@@ -46,25 +44,34 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $getId = Str::uuid();
-        $insert = DB::table('users')->insert([
-            'uuid' => $getId,
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'user_group' => 'user',
-            'user_status' => false,
-            'created_at' => now(),
-            'updated_at' => now()
+        $accounts = DB::table('users_account')->insert([
+            'uuid' => $getId
         ]);
-        if ($insert) {
-            $insertAccount =  DB::table('users_account')->insert([
-                'uuid' => $getId
+        if ($accounts) {
+            return User::create([
+                'uuid' => $getId,
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'user_group' => 'user',
+                'user_status' => false,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ]);
-            if ($insertAccount) {
-                return redirect()->route('login');
-            } else {
-                return redirect()->route('login');
-            }
+        } else {
+            return redirect()->back();
         }
+
+
+        // $user = new User;
+        // $user->uuid = $getId;
+        // $user->name = $data['name'];
+        // $user->email = $data['email'];
+        // $user->password = Hash::make($data['password']);
+        // $user->user_group = 'user';
+        // $user->user_status = false;
+        // $user->created_at = date('Y-m-d H:i:s');
+        // $user->updated_at = date('Y-m-d H:i:s');
+        // $user->save();
     }
 }

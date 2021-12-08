@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i <= 10; $i++) {
+        for ($i = 0; $i <= 20; $i++) {
             $getId = Str::uuid();
             $gender = $faker->randomElement(['male', 'female']);
             DB::table('users')->insert([

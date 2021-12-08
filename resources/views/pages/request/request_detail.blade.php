@@ -7,7 +7,7 @@
             <div class="flex items-start justify-between p-8 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-blue-900 text-xl lg:text-2xl font-semibold dark:text-white">
                     <span>Request Detail</span>
-                    
+
                 </h3>
                 <button type="button"
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-blue-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -52,38 +52,50 @@
                         </label>
                         <p class="text-gray-600 font-semibold detail-email"></p>
                     </div>
-                    <div class="mb-2 sm:w-1/3">
+                </div>
+                <div class="flex sm:flex-row flex-col gap-3 pb-4 border-b mb-2">
+                    <div class="mb-2 sm:w-6/12">
                         <label for="gender" class="text-sm font-medium text-blue-900 block mb-2 dark:text-gray-300">
                             Gender
                         </label>
                         <p class="text-gray-600 font-semibold detail-gender"></p>
                     </div>
-                    <div class="mb-2 sm:w-1/3">
+                    <div class="mb-2 sm:w-6/12">
+                        <label for="phone" class="text-sm font-medium text-blue-900 block mb-2 dark:text-gray-300">
+                            Phone Number
+                        </label>
+                        <p class="text-gray-600 font-semibold detail-phone"></p>
+                    </div>
+                </div>
+                <div class="mb-2 flex sm:flex-row flex-col gap-3 mb-2">
+                    <div class="mb-2 sm:w-6/12">
                         <label for="nationality"
                             class="text-sm font-medium text-blue-900 block mb-2 dark:text-gray-300">
                             Nationality
                         </label>
                         <p class="text-gray-600 font-semibold detail-nationality"></p>
                     </div>
-                </div>
-                <div class="mb-2 flex sm:flex-row flex-col gap-3 mb-2">
-                    <div class="mb-2 sm:w-1/3">
-                        <label for="phone" class="text-sm font-medium text-blue-900 block mb-2 dark:text-gray-300">
-                            Phone Number
-                        </label>
-                        <p class="text-gray-600 font-semibold detail-phone"></p>
-                    </div>
-                    <div class="mb-2 sm:w-2/3">
+                    <div class="mb-2 sm:w-6/12">
                         <label for="passport" class="text-sm font-medium text-blue-900 block mb-2 dark:text-gray-300">
                             Passport ID
                         </label>
                         <p class="text-gray-600 font-semibold detail-passport"></p>
                     </div>
                 </div>
-                <div class="mb-2">
-                    <div class="flex flex-row items-center justify-center py-5">
-                        <div class="w-48 sm:w-5/12 rounded-lg">
-                            <img class="detail-passport-img rounded-xl items-center w-full h-full object-cover" alt="" />
+                <div class="mb-2 flex flex-col gap-2 mb-4">
+                    <div class="mb-2 sm:w-6/12">
+                        <label for="passport-img"
+                            class="text-sm font-medium text-blue-900 block mb-2 dark:text-gray-300">
+                            Passport Image
+                        </label>
+                    </div>
+                    <div class="flex flex-row justify-center items-center w-full">
+                        <div class="w-12/12 flex sm:flex-row justify-center items-center">
+                            <div class="sm:w-8/12  rounded-lg  img-zoom-container">
+                                <a class="open-passport">
+                                    <img class="detail-passport-img rounded-xl sm:w-10/12 object-cover" alt="" />
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,7 +107,8 @@
                 </div>
             </div>
             <!-- Modal footer -->
-            <div class="flex space-x-2 items-center p-6 bg-gray-50 border border-gray-100 rounded-b-2xl px-5 mt-5 rounded-b dark:border-gray-600">
+            <div
+                class="flex space-x-2 items-center p-6 bg-gray-50 border border-gray-100 rounded-b-2xl px-5 mt-5 rounded-b dark:border-gray-600">
                 {{-- <button data-modal-toggle="user-detail-modal" type="button"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-sm rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I
                     accept</button>

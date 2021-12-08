@@ -32,7 +32,7 @@ for (let i = 0; i < detailUser.length; i++) {
 
             var detailResponse = await responses.json();
 
-            console.log(detailResponse);
+            // console.log(detailResponse);
             requestModalDetail.querySelector(".detail-reqid").innerHTML =
                 detailResponse.req_id;
 
@@ -61,6 +61,15 @@ for (let i = 0; i < detailUser.length; i++) {
                 .querySelector(".detail-passport-img")
                 .setAttribute(
                     "src",
+                    APP_URL +
+                        "/storage/requests/passport/" +
+                        detailResponse.passport_img
+                );
+
+            requestModalDetail
+                .querySelector(".open-passport")
+                .setAttribute(
+                    "href",
                     APP_URL +
                         "/storage/requests/passport/" +
                         detailResponse.passport_img

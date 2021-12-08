@@ -6,5 +6,6 @@
     var APP_URL = {!! json_encode(url('/')) !!}
     var STORAGE_URL = APP_URL + "/storage/";
 </script>
+
 {{-- PUSH JS --}}
 @stack('js-stacks')

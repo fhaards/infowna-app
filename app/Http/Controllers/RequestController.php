@@ -12,16 +12,25 @@ use PDF;
 
 class RequestController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $getGroup = Auth::user()->user_group;
         $getUuid  = Auth::user()->uuid;
         if ($getGroup == 'user') :
             return redirect()->route('requests.create');
         elseif ($getGroup == 'admin') :
-            $requests = REQ::latest()->paginate(5);
-            return view('pages.request.request_table', compact('requests'))
-                ->with('i', (request()->input('page', 1) - 1) * 5);
+            $status = $request->get('req_status');
+            $requests = REQ::query();
+            
+            if(!is_null($status)){
+                $requests = $requests->where('req_status',$status);
+            }
+
+            $requests = $requests->latest()->paginate(3);
+            return view('pages.request.request_table', compact('requests'));
+
+            // return view('pages.request.request_table', compact('requests'))
+            //     ->with('i', (request()->input('page', 1) - 1) * 3);
         else :
             return redirect(404);
         endif;
