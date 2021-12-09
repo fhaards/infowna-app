@@ -27,6 +27,7 @@ class Request extends Model
         'passport_img',
         'req_status',
         'address_indonesia',
+        'created_at',
     ];
 
     protected $hidden = [];

@@ -19,18 +19,32 @@ class RequestController extends Controller
         if ($getGroup == 'user') :
             return redirect()->route('requests.create');
         elseif ($getGroup == 'admin') :
+            $urlquery = [];
             $status = $request->get('req_status');
+            $ordate = $request->get('order_date');
             $requests = REQ::query();
-            
-            if(!is_null($status)){
-                $requests = $requests->where('req_status',$status);
+
+            if (!is_null($status)) {
+                $requests =  $requests->where('req_status', $status);
             }
 
-            $requests = $requests->latest()->paginate(3);
-            return view('pages.request.request_table', compact('requests'));
+            if (!is_null($ordate)) {
+                
+                if ($ordate == 'desc') {
+                    $requests =  $requests->orderBy('created_at', 'desc');
+                }
 
-            // return view('pages.request.request_table', compact('requests'))
-            //     ->with('i', (request()->input('page', 1) - 1) * 3);
+                if ($ordate == 'asc') {
+                    $requests = $requests->orderBy('created_at', 'asc');
+                }
+            }
+
+            $data['requests'] = $requests->latest()->paginate(3);
+            $data['urlquery'] = ['req_status' => $status, 'ordate' => $ordate];
+            return view('pages.request.request_table', $data);
+
+        // return view('pages.request.request_table', compact('requests'))
+        //     ->with('i', (request()->input('page', 1) - 1) * 3);
         else :
             return redirect(404);
         endif;
@@ -136,12 +150,12 @@ class RequestController extends Controller
         //
     }
 
-    public function printRequests(Request $request, $id){
+    public function printRequests(Request $request, $id)
+    {
         // $detail = $this->detailQueries($id);
         $data['data'] = REQ::find($id);
         $pdf = PDF::loadview('pages/request/request_print', $data);
         return $pdf->stream('Print-' . $id . '.pdf');
-        
     }
 
     public function apiDetailRequests($id)

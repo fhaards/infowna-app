@@ -19,11 +19,14 @@
 
 
             <div class="flex flex-col">
-                <div class="overflow-x-auto">
+                <div class="w-full mb-5 py-2 border-t border-b border-gray-200">
+                    @include('pages/request/request_filter')
+                </div>
+                <div class="overflow-x-auto ">
                     @if ($requests->isEmpty())
                         <p class="bg-danger text-center p-1">Data Requests is empty</p>
                     @else
-                        @include('pages/request/request_filter')
+
                         <div class="py-2 inline-block min-w-full">
                             <div class="overflow-hidden sm:rounded-lg">
                                 <table class="min-w-full" id="table-request">
@@ -142,7 +145,12 @@
                     {{-- {{!! $requests->appends(Input::get('req_status'))->links() !!}} --}}
                     {{-- {{ $post->appends($request->only('posted_type')) }} --}}
                     {{-- {!! $requests->links() !!} --}}
-                    {!! $requests->appends(Request::except('page'))->render() !!}
+                    @if (!empty($urlquery['req_status']))
+                        {!! $requests->appends(Request::except('page'))->render() !!}
+                    @else
+                        {!! $requests->appends(Request::except('page', 'req_status'))->render() !!}
+                    @endif
+
                 </div>
             </div>
         </div>
@@ -155,7 +163,7 @@
 @endpush
 
 @push('js-stacks')
-    
+
     <script src="{{ asset('js/requests-detail.js') }}"></script>
     <script src="{{ asset('js/requests-change.js') }}"></script>
 @endpush
