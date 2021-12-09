@@ -29,11 +29,9 @@ class RequestController extends Controller
             }
 
             if (!is_null($ordate)) {
-                
                 if ($ordate == 'desc') {
                     $requests =  $requests->orderBy('created_at', 'desc');
                 }
-
                 if ($ordate == 'asc') {
                     $requests = $requests->orderBy('created_at', 'asc');
                 }
