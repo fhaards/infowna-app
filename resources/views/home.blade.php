@@ -14,10 +14,7 @@
                     <h3 class=" font-bold text-2xl text-blue-900 leading-tight">
                         Welcome Back,
                     </h3>
-                    <hr class="w-12 h-1 bg-yellow-400 rounded-full mt-8">
-                    <p class="text-gray-800 text-base leading-relaxed mt-8 font-semibold">
-                        Residence Permit Application {{ __('Dashboard') }}
-                    </p>
+                    <hr class="w-12 h-1 bg-yellow-300 rounded-full mt-8">
                 </div>
 
                 <!-- hero image -->
@@ -39,6 +36,7 @@
 
             @if (Auth::user()->user_group == 'admin')
                 @include('home_count')
+                @include('home_latest')
             @else
                 
             @endif

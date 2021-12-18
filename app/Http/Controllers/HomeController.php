@@ -36,6 +36,8 @@ class HomeController extends Controller
                 $data['countUser']  = User::where('user_group', '!=', 'admin')->get()->count();
                 $data['countReqW']  = REQ::all()->count();
                 $data['countReqA']  = REQ::where('req_status', 'Approved')->get()->count();
+                $data['user']       = User::where('user_group', '!=', 'admin')->latest()->paginate(5);
+                $data['requests']   = REQ::query()->latest()->paginate(5);
                 return view('home', $data);
             } else {
                 return view('home');

@@ -145,7 +145,9 @@ class RequestController extends Controller
 
     public function destroy($id)
     {
-        //
+        $req = REQ::find($id);
+        $req->delete();
+        return back()->with('success', 'Success! Successfully Deleted Request');
     }
 
     public function printRequests(Request $request, $id)

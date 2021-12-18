@@ -13,11 +13,6 @@
                             <span class="text-blue-800">List of User Table</span>
                         </h2>
                     </div>
-
-                    <p class="max-w-xs mx-auto mt-4 text-gray-700 lg:mt-0 lg:mr-0">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi consequatur tempore culpa
-                        officiis
-                    </p>
                 </div>
             </section>
 
@@ -39,6 +34,10 @@
                                         <th scope="col"
                                             class="text-center border border-blue-800 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
                                             Email
+                                        </th>
+                                        <th scope="col"
+                                            class="text-center border border-blue-800 text-xs font-medium text-gray-50 px-4 py-3 text-left uppercase tracking-wider dark:text-gray-400">
+                                            Join Date
                                         </th>
                                         {{-- <th scope="col" class="text-center border border-blue-800 relative px-4 py-3">
                                             <span class="sr-only">Edit</span>
@@ -62,6 +61,10 @@
                                             <td
                                                 class="border border-gray-200 text-sm text-gray-500 px-4 py-2 whitespace-nowrap dark:text-gray-400">
                                                 {{ $us->email }}
+                                            </td>
+                                            <td
+                                                class="border border-gray-200 text-sm text-gray-500 px-4 py-2 whitespace-nowrap dark:text-gray-400">
+                                                {{ date('d/m/Y - H:i', strtotime($us->created_at)) }}
                                             </td>
                                             {{-- <td
                                                 class="border border-gray-200 px-4 py-2 whitespace-nowrap text-right text-sm font-medium">

@@ -108,8 +108,6 @@
                                                             </svg>
                                                         </a>
                                                         @if ($req->req_status == 'Approved')
-
-
                                                             <a target="_blank"
                                                                 href="{{ route('print-requests', $req->req_id) }}"
                                                                 class="bg-blue-800 hover:bg-blue-900 inline-flex items-center justify-center text-xs  p-1.5 rounded-lg">
@@ -125,6 +123,20 @@
                                                                 </svg>
                                                             </a>
                                                         @endif
+                                                        <a href="javascript:void(0)" delid="{{ $req->req_id }}"
+                                                            data-modal-toggle="request-delete-modal"
+                                                            class="delete-request bg-red-500 hover:bg-red-600 inline-flex items-center justify-center text-xs p-1.5 rounded-lg">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="12"
+                                                                viewBox="0 0 24 24" fill="none" stroke="#ffffff"
+                                                                stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                                </path>
+                                                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                            </svg>
+                                                        </a>
                                                     </div>
                                                 </td>
                                                 {{-- <td
@@ -160,10 +172,12 @@
 @push('modals')
     @include('pages/request/request_detail')
     @include('pages/request/request_change_status')
+    @include('pages/request/request_delete')
 @endpush
 
 @push('js-stacks')
 
     <script src="{{ asset('js/requests-detail.js') }}"></script>
     <script src="{{ asset('js/requests-change.js') }}"></script>
+    <script src="{{ asset('js/requests-delete.js') }}"></script>
 @endpush
